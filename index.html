@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dharmesh Jogadiya - Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', monospace;
+      background: #1e1e1e;
+      color: #ffd369;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Loader */
+    .loader {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #2e2e2e;
+      flex-direction: column;
+      font-family: 'VT323', monospace;
+      color: #ffd369;
+    }
+
+    .loader h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #ffd369;
+    }
+
+    .loader-bar {
+      width: 300px;
+      height: 30px;
+      border: 2px dashed #ffd369;
+      position: relative;
+    }
+
+    .loader-fill {
+      height: 100%;
+      background: #ffd369;
+      width: 0%;
+      animation: load 3s forwards;
+    }
+
+    @keyframes load {
+      to { width: 100%; }
+    }
+
+    /* Main Content */
+    #main-content { display: none; }
+
+    /* Hero Section - Pixelated Terminal Style */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: #000;
+      position: relative;
+      font-family: 'VT323', monospace;
+      color: #ffd369;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .hero.hidden {
+      opacity: 0;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.1) 2%,
+        transparent 2%,
+        transparent 4%
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+      animation: scanline 0.1s linear infinite;
+    }
+
+    @keyframes scanline {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(4px); }
+    }
+
+    .hero img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 3px solid #ffd369;
+      image-rendering: pixelated;
+      filter: drop-shadow(0 0 5px #ffd369);
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      text-shadow: 0 0 10px #ffd369;
+      animation: flicker 0.05s infinite alternate;
+    }
+
+    .hero .highlight {
+      background: none;
+      color: #ffd369;
+      padding: 0;
+      display: inline;
+      text-shadow: 0 0 5px #ffd369;
+    }
+
+    .hero p {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+
+    .scroll-down {
+      margin-top: 20px;
+    }
+
+    .scroll-down button {
+      background: none;
+      border: 2px solid #ffd369;
+      color: #ffd369;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-family: 'VT323', monospace;
+      cursor: pointer;
+      text-shadow: 0 0 5px #ffd369;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 0.95; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* Portfolio Section */
+    .section {
+      opacity: 0;
+      transform: translateY(50px);
+      visibility: hidden;
+      transition: all 1s ease;
+      padding: 60px 20px;
+      background: #121212;
+      min-height: 100vh;
+    }
+
+    .section.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .section h2 {
+      border-bottom: 1px dashed #ffd369;
+      padding-bottom: 10px;
+      font-family: 'Courier New', monospace;
+      color: #ffd369;
+    }
+
+    .section p, .section ul {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    .section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .section ul li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #ffd369;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .section {
+        padding: 40px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Boot Loader -->
+<div class="loader" id="loader">
+  <h1>Booting...</h1>
+  <div class="loader-bar">
+    <div class="loader-fill"></div>
+  </div>
+  <p style="margin-top: 10px;">Nearly there...</p>
+</div>
+
+<!-- Main Content -->
+<div id="main-content">
+  <div class="hero" id="hero">
+    <img src="https://github.com/DharmeshJogadiya.png" alt="Dharmesh Jogadiya">
+    <h1>Hi, I'm <span class="highlight">Dharmesh Jogadiya</span></h1>
+    <p>BCA Graduate • Android Developer • Tech Enthusiast</p>
+    <div class="scroll-down">
+      <button onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">Scroll ↓</button>
+    </div>
+  </div>
+
+  <!-- Portfolio Section -->
+  <div class="section" id="portfolio">
+    <h2>About Me</h2>
+    <p>Motivated and enthusiastic BCA student from Tilak Maharashtra Vidyapeeth with a passion for Android development and cloud tech.</p>
+
+    <h2>Technical Skills</h2>
+    <ul>
+      <li>Languages: Java, Python, C/C++, HTML, CSS, JS</li>
+      <li>Frameworks: Android SDK, Flutter (Basic)</li>
+      <li>Tools: SQLite, Firebase, Android Studio</li>
+      <li>OS: Linux, Windows</li>
+    </ul>
+
+   <h2>Projects</h2>
+<ul>
+  <li>
+<strong>CheckPoint</strong> – An Emergency SOS App that sends Manual/Automatic GPS-based alerts via Firebase and SMS fallback.
+<br>
+<a href="https://github.com/DharmeshJogadiya/SOS_CHECKPOINT" target="_blank">
+  🔗 View Project on GitHub
+</a>    <div style="margin-top: 15px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+      <img src="1_splash_screen.jpg" alt="Splash Screen" style="width: 180px; border: 2px solid #ffd369; border-radius: 5px;">
+      <img src="2_terms_conditions.jpg" alt="Terms & Conditions" style="width: 180px; border: 2px solid #ffd369; border-radius: 5px;">
+      <img src="3_permission_request.jpg" alt="Permissions" style="width: 180px; border: 2px solid #ffd369; border-radius: 5px;">
+      <img src="5_navigation_menu.jpg" alt="App Menu" style="width: 180px; border: 2px solid #ffd369; border-radius: 5px;">
+      <img src="6_add_emergency_contact.jpg" alt="Add Emergency Contact" style="width: 180px; border: 2px solid #ffd369; border-radius: 5px;">
+      <img src="7_location_map_view.jpg" alt="Location Map View" style="width: 180px; border: 2px solid #ffd369; border-radius: 5px;">
+    </div>
+  </li>
+</ul>
+
+    <h2>Contact</h2>
+    <ul>
+      <li>Email: <a href="mailto:dharmeshjogadiya78@gmail.com">dharmeshjogadiya78@gmail.com</a></li>
+      <li>GitHub: <a href="https://github.com/DharmeshJogadiya/DharmeshJogadiya" target="_blank">github.com/DharmeshJogadiya</a></li>
+      <li>LinkedIn: <a href="https://www.linkedin.com/in/dharmesh-jogadiya-46a96a36a" target="_blank">linkedin.com/in/dharmesh-jogadiya</a></li>
+      <li>Phone: +91-8779967972</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  // Boot complete
+  setTimeout(() => {
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+    // Trigger initial visibility check
+    observer.observe(document.getElementById('hero'));
+    observer.observe(document.getElementById('portfolio'));
+  }, 3500);
+
+  // Intersection Observer for fade in/out
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.target.id === 'portfolio') {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          document.getElementById('hero').classList.add('hidden');
+        } else {
+          entry.target.classList.remove('visible');
+          document.getElementById('hero').classList.remove('hidden');
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+
+  // Observe sections
+  observer.observe(document.getElementById('portfolio'));
+</script>
+
+</body>
+</html>
